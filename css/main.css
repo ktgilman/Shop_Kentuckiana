@@ -1,0 +1,205 @@
+
+
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+
+
+
+
+/***************************
+ *
+ *Nav
+ *
+ *****************************/
+
+nav ul{
+    text-align: center;
+    position: relative;
+}
+
+nav ul li{
+   display: inline-block;
+   width: 10%;
+   padding: 1% 1%;
+   margin: 0 1%;
+}
+
+#yourpage{
+    display: none;
+    position: absolute;
+    top:100%;
+}
+
+#yourpage li{
+    display: block;
+}
+
+
+
+/**************************
+ *
+ *Product Tab
+ *
+ ****************************/
+
+h3{
+    text-align: center;
+}
+
+.leftSide{
+    width: 70%;
+    float: left;
+}
+
+.rightSide{
+    float: right;
+    right: 0;
+    top: 0;
+    width: 30%;
+}
+
+.prodList button{
+    display: inline-block;
+    width: 70%;
+    padding: 5%;
+    margin-top: 2%;
+    margin-bottom:2%;
+    border-radius: 5%;
+}
+
+.category{
+    margin-left: 5%;
+}
+
+.subcategory{
+    margin-left: 15%;
+}
+
+.product{
+    margin-left: 25%;
+}
+
+.looseProduct{
+    margin-left: 5%;
+}
+
+.semiLooseProduct{
+    margin-left: 15%;
+}
+
+.prodList img{
+    float: right;
+    width: 5%;
+    margin: 0 2%;
+}
+
+.prodList p{
+    float:left;
+}
+
+#options{
+    position: fixed;
+    right: 5%;
+    top: 30%;
+    width: 25%;
+}
+
+#options button{
+    width: 100%;
+    padding: 15% 5%;
+    margin: 10% 0;
+    border-radius: 5%;
+    
+}
+
+#info{
+    width:60%;
+    margin: 0 auto;
+    border: solid;
+}
+
+#info ul, #info ol{
+    list-style: inherit;
+    padding: 10%;
+    text-align: left;
+}
+
+#info ul li{
+    list-style: inherit;
+}
+
+/*************************
+ *
+ *Footer
+ *
+ ************************/
+
+footer ul{
+    clear: both;
+}
+
+/************************
+ *
+ *LightBoxes
+ *
+ ************************/
+
+.fullPage{
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.lightBox{
+    width: 60%;
+    margin: 5% 20%;
+    float: left;
+    text-align: center;
+}
+
+label{
+    display: inline-block;
+}
+
+
+
+/************************
+ *
+ *Colors
+ *
+ ************************/
+
+nav ul li, #yourpage{
+    background-color: purple;
+}
+
+.category{
+    background-color: red;
+    box-shadow: 2px 2px 2px gray;
+}
+
+.subcategory{
+    background-color: yellow;
+}
+
+.product, .looseProduct, .semiLooseProduct{
+    background-color: green;
+}
+
+#options button{
+    background-color: gray;
+}
+
+.fullPage{
+    background-color: rgba(256,256,256,.8);
+}
+
+.lightBox{
+    background-color: blue;
+    color: white;
+}

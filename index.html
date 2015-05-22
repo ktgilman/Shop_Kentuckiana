@@ -2,7 +2,8 @@
 
 <html lang="en">
     <head>
-        
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="css/main.css">
     </head>
     <body>
         <header>
@@ -12,48 +13,15 @@
         <nav>
             <ul>
                 <li>Home</li>
-                <li>Your Page
-                    <ul>
+                <li id="retailerPage"><a href="#">Your Page</a>
+                    <ul id="yourpage">
                         <li>View</li>
                         <li>Edit</li>
                         <li>Add Post</li>
-                        <li>Delete Post</li>
                     </ul>
                 </li>
-                <li>Products
-                    <ul>
-                        <li>View
-                            <ul>
-                                <li>Category</li>
-                                <li>Subcategory</li>
-                                <li>Product</li>
-                            </ul>
-                        </li>
-                        <li>Edit
-                            <ul>
-                                <li>Category</li>
-                                <li>Subcategory</li>
-                                <li>Product</li>
-                            </ul>
-                        
-                        </li>
-                        <li>Delete
-                            <ul>
-                                <li>Category</li>
-                                <li>Subcategory</li>
-                                <li>Product</li>
-                            </ul>
-                        
-                        </li>
-                    </ul>
-                </li>
-                <li>Discounts
-                    <ul>
-                        <li>View</li>
-                        <li>Edit</li>
-                        <li>Delete</li>
-                    </ul>
-                </li>
+                <li><a href="#" id="products">Products</a></li>
+                <li>Discounts</li>
                 <li>Analytics</li>
                 <li>Account</li>
             </ul>
@@ -62,9 +30,34 @@
             
         </section>
         
+        <footer>
+            <ul>
+                <li>Home</li>
+                <li>Your Page</li>
+                <li>Products</li>
+                <li>Discounts</li>
+                <li>Analytics</li>
+                <li>Account</li>
+            </ul>
+        </footer>
         
+        <!--script to retrieve JQuery plugin-->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+            
+        <!--script to retrieve CKEditor-->
+            <script src="ckeditor/ckeditor.js"></script>;
         
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-        <script src="js/products.js"></script>
+        <!--Scripts for the Products Page-->
+            <script src="js/basicfunctions.js"></script>
+            <script src="js/addCategory.js"></script>
+            <script src="js/addsubcategory.js"></script>
+            <script src="js/addproduct.js"></script>
+            <script src="js/products.js"></script>
+            <script src="js/viewproduct.js"></script>
+            <script src="js/deleteproducts.js"></script>
+            <script src="js/editproduct.js"></script>
+            
+        <!--Scripts for the Discounts Page-->
+        
     </body>
 </html>
