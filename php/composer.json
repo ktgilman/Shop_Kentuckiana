@@ -1,0 +1,13 @@
+{
+    "name": "kevin/php",
+    "description": "Ecommerce Site",
+    "authors": [
+        {
+            "name": "Kevin Gilman",
+            "email": "ktgilman@gmail.com"
+        }
+    ],
+    "require": {
+        "monolog/monolog": "^1.13"
+    }
+}

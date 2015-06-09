@@ -67,7 +67,8 @@ h3{
     padding: 5%;
     margin-top: 2%;
     margin-bottom:2%;
-    border-radius: 5%;
+    border-radius: 25% 25% 0% 0%;
+    outline: none;
 }
 
 .category{
@@ -90,14 +91,21 @@ h3{
     margin-left: 15%;
 }
 
+.editDelete{
+    padding: 3% 1% 3% 3%;
+    width: 10%;
+    border-radius: 0 0 25% 25%;
+}
+
 .prodList img{
-    float: right;
-    width: 5%;
-    margin: 0 2%;
+    width: 35%;
+    padding-right: 15%;
 }
 
 .prodList p{
     float:left;
+    font-weight: bold;
+    font-size: 1.25em;
 }
 
 #options{
@@ -115,20 +123,26 @@ h3{
     
 }
 
-#info{
-    width:60%;
-    margin: 0 auto;
-    border: solid;
+
+
+/**************************
+ *
+ *Loading
+ *
+ *************************/
+
+#loading{
+    display: none;
+    position: fixed;
+    left:0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(256,256,256, .8);
 }
 
-#info ul, #info ol{
-    list-style: inherit;
-    padding: 10%;
-    text-align: left;
-}
-
-#info ul li{
-    list-style: inherit;
+#loading p{
+    font-size: 5em;
 }
 
 /*************************
@@ -153,6 +167,7 @@ footer ul{
     top: 0;
     width: 100%;
     height: 100%;
+    overflow-y: auto;
 }
 
 .lightBox{
@@ -162,8 +177,187 @@ footer ul{
     text-align: center;
 }
 
+.lightBox ul{
+    text-align: center;
+}
+
+.lightBox li{
+    display: inline-block;
+    padding: 1%;
+    margin: 1%;
+}
+
+.leftDiv{
+    float: left;
+    width: 50%;
+}
+
+.leftDiv img{
+    width: 70%;
+    margin: 0 15%;
+}
+
+.rightDiv{
+    float: right;
+    width: 50%;
+}
+
+.bottomDiv{
+    clear: both;
+}
+
+.hiddenInfoDiv{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(256,256,256,.8);
+}
+
+.hiddenContainer{
+    width: 75%;
+    margin: 0 auto;
+    padding: 10%;
+    background-color: green;
+    
+}
+
 label{
     display: inline-block;
+}
+
+.jcarousel {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+}
+
+.jcarousel ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.jcarousel li {
+    float: left;
+    width: 23%;
+    margin: 1%;
+    padding: 0;
+}
+
+.jcarousel li img{
+    width: 100%;
+}
+
+/***********************
+ *
+ *View Product
+ *
+ ************************/
+
+#info{
+    width:60%;
+    margin: 0 auto;
+    padding: 0;
+    border: solid;
+    text-align: left;
+}
+
+#info ul, #info ol{
+    padding: 10%;
+    text-align: left;
+}
+
+#info ul{
+    list-style: inherit;
+}
+
+.showPrimaryImage p{
+    float: left;
+}
+
+#primaryImage{
+    float: left;
+    width: 25%;
+}
+
+.viewOptionInfoWrapper{
+    position: fixed;
+    display: none;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(256,256,256,.8);
+}
+
+.viewOptionInfoDiv{
+    width: 70%;
+    margin: 5%;
+    padding: 10%;
+    border-radius: 5%;
+    background: blue;
+}
+
+
+
+
+/*************************
+ *
+ *Edit Product
+ *
+ ***********************/
+
+.preview {
+    position: relative;
+    overflow: auto;
+    width: 100%;
+}
+
+.preview ul {
+    position: relative;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.preview li {
+    float: left;
+    width: 23%;
+    margin: 1%;
+    padding: 0;
+}
+
+.preview li img{
+    width: 100%;
+}
+
+#optionInfoDiv{
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 5%;
+    margin: 5%;
+    background: blue;
+    border-radius: 5%;
+    
+}
+
+#optionEditDiv{
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding: 5%;
+    margin: 5% 10%;
+    width: 70%;
+    background: blue;
+    border-radius: 5%;
+    text-align: center;
 }
 
 
@@ -180,7 +374,6 @@ nav ul li, #yourpage{
 
 .category{
     background-color: red;
-    box-shadow: 2px 2px 2px gray;
 }
 
 .subcategory{
@@ -189,6 +382,15 @@ nav ul li, #yourpage{
 
 .product, .looseProduct, .semiLooseProduct{
     background-color: green;
+}
+
+.category, .subcategory, .product, .looseProduct, .semiLooseProduct{
+    box-shadow: 3px 3px 3px gray;
+}
+
+.noBackground{
+    background-color: white;
+    box-shadow: 0 0 0 white;
 }
 
 #options button{
