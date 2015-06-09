@@ -2,7 +2,6 @@
 
 include '../secure/credentials.php';
 include 'getarray.php';
-include 'runproductquery.php';
 
 $mysqli = new mysqli($dbserver, $dbusername, $dbpassword, $dbname);
 
@@ -34,10 +33,6 @@ if($itemType == 'category'){
         $prodArray = mysqli_fetch_array($res, MYSQLI_ASSOC);
         $catList = get_cat_and_subcat_array($retailerID);
         $prodArray['categorylist'] = $catList;
-        $imgReq = "SELECT * FROM productimage WHERE productID='$itemID'";
-        $prodArray['images'] = run_query($imgReq, true);
-        $optionReq = "SELECT * FROM productoption WHERE productID='$itemID' ORDER BY optionName";
-        $prodArray['options'] = run_query($optionReq, true);
         $resultArray = $prodArray;
     }
 }
