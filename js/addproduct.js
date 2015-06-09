@@ -1,27 +1,58 @@
 //Once the user fills out the add Subcategory form, upon clicking the submit button, this function runs to add their responses to the db
 
-function addProdToDB(){
+function addProdToDB(e){
+    e.preventDefault();
+    var formData = new FormData(this);
     var productName = $('#productName').val();
     var productInfo = CKEDITOR.instances.productInfo.getData();
+    var optionCount = $('#optionCount').val();
+    for(var a =0; a<=optionCount; a++){
+        var optionVariable = 'optionInfo'+a;
+        var optionInfo = $('#'+optionVariable).val();
+        alert(optionInfo);
+        formData.append(optionVariable,optionInfo);
+    }
     var subcategoryID = $('#subcategory').val();
     var categoryID = $('#category').val();
     var retailerID = $('#retailer').val();
+    formData.append('productInfo',productInfo);
     $.ajax({
         url: 'php/addproduct.php',
         method: 'POST',
-        data: {
-            'productName':productName,
-            'productInfo':productInfo,
-            'subcategoryID':subcategoryID,
-            'categoryID':categoryID,
-            'retailerID':retailerID
-        },
+        data: formData,
+        contentType: false,
+        cache: false,
+        processData: false,
         success: function(response){
             console.log(response);
             $('.fullPage').remove();
             getProducts();
         }
     });
+}
+
+
+//Display existing product info in dropdown, Hide Existing product info, and setup variables for new input
+function addAnotherOption() {
+    var count = $('#optionCount').val();
+    var checkItems = ['optionName'+count,'optionPrice'+count,'optionInfo'+count,'containerInfo'+count];
+    var tempOptionName = $('#'+checkItems[0]).val();
+    var tempOptionPrice = $('#'+checkItems[1]).val();
+    if (count == 0) {
+        $('#reviewOptionChoices').empty();
+    }
+    $('#reviewOptionChoices').append('<option>'+tempOptionName+' ($'+tempOptionPrice+')</option>');
+    $('#'+checkItems[0]).hide();
+    $('#'+checkItems[1]).hide();
+    $('#'+checkItems[3]).hide();
+    count++;
+    var newItems = ['optionName'+count,'optionPrice'+count,'optionInfo'+count, 'containerInfo'+count];
+    $('#optionName').append('<input type="text" id="'+newItems[0]+'" name="'+newItems[0]+'">');
+    $('#optionPrice').append('<input type="number" id="'+newItems[1]+'" name="'+newItems[1]+'">');
+    $('#optionInfo').append('<div id="'+newItems[3]+'"><textarea id="'+newItems[2]+'" name="'+newItems[2]+'"></textarea></div>');
+    $('#optionCount').val(count);
+    var infoString = newItems[2];
+    $('#'+infoString).ckeditor();  
 }
 
 //When the user selects a category, the subcategory select element should populate with the available subcategories in that category
@@ -59,18 +90,70 @@ function addProduct(retailer) {
     $productDiv = $('<div class="lightBox"></div>');
     $productDiv.append('<h4>Add a Product</h4>');
     
-    $productDiv.append('<label for="productName">Product Name</label><br><input type="text" id="productName"><br>');
-    $productDiv.append('<label for="category">Assigned Category</label><br><select name="category" id="category"></select><br>');
-    $productDiv.append('<label for="subcategory">Assigned Subcategory</label><br><select name="subcategory" id="subcategory"><option value="0">No Subcategory</option></select><br>');
-    $productDiv.append('<label for="productInfo">Product Info</label><br><textarea id="productInfo"></textarea><br>');
-    $productDiv.append('<input type="hidden" id="retailer" value="'+retailer+'">');
-    $productDiv.append('<button id="addProdButton">Add Product</button>');
+        $topNav = $('<ul><li><a href="#" onclick="selectBasicInfo()">Basic Info</a></li>'+
+                                '<li><a href="#" onclick="selectDetailedInfo()">Detailed Info</a></li>'+
+                                '<li><a href="#" onclick="selectImages()">Select Images</a></li>'+
+                                '<li><a href="#" onclick="selectOptions()">SelectOptions</a></li></ul>');
+    
+    $productDiv.append($topNav);
+    
+        $formDiv = $('<form id="uploadimage" action="" method="post" enctype="multipart/form-data"></form>');
+    
+        $firstPageDiv = $('<div class="firstPage"></div>');
+    
+        $firstPageDiv.append('<label for="productName">Product Name</label><br><input type="text" name="productName" id="productName"><br>');
+        $firstPageDiv.append('<label for="category">Assigned Category</label><br><select name="categoryID" id="category"></select><br>');
+        $firstPageDiv.append('<label for="subcategory">Assigned Subcategory</label><br><select name="subcategoryID" id="subcategory"><option value="0">No Subcategory</option></select><br>');
+    
+    $formDiv.append($firstPageDiv);
+    
+        $secondPageDiv = $('<div class="secondPage"></div>');
+        $secondPageDiv.append('<label for="productInfo">Product Info</label><br><textarea name="productInfo" id="productInfo"></textarea><br>');
+        
+    $formDiv.append($secondPageDiv);
+    
+        $thirdPageDiv = $('<div class="thirdPage"></div>');
+        
+        $thirdPageDiv.append('<label id="imageUploadLabel">Select Image: <input type="file" count="0" name="fileToUpload0" id="fileToUpload0"></label>');
+        $thirdPageDiv.append('<div class="preview"><ul></ul></div>');
+    
+    $formDiv.append($thirdPageDiv);
+    
+        $fourthPageDiv = $('<div class="fourthPage"></div>');
+    
+            $optionChoiceDiv = $('<div class="optionChoice"></div>');
+            $optionSelectList = $('<select id="reviewOptionChoices"></select>');
+            $optionSelectList.append('<option>Add Pricing Option</option>');
+            $optionChoiceDiv.append($optionSelectList);
+        
+        $fourthPageDiv.append($optionChoiceDiv);
+        
+            $addOptionDiv = $('<div class="addOption"></div>');
+            $addOptionDiv.append('<input type="hidden" id = "optionCount" name="optionCount" value="0">');
+            $addOptionDiv.append('<label id="optionName">Option Name: <input type="text" id="optionName0" name="optionName0"></label><br>');
+            $addOptionDiv.append('<label id="optionPrice">Option Price: <input type="number" id="optionPrice0" name="optionPrice0"></label><br>');
+            $addOptionDiv.append('<label id="optionInfo">Option Info: <div id="containerInfo0"><textarea id="optionInfo0" name="optionInfo0"></textarea></div></label><br>');
+            $addOptionDiv.append('<a href="#" onclick="addAnotherOption()">Add Another Option</a><br>');
+            
+        $fourthPageDiv.append($addOptionDiv);
+    
+    $formDiv.append($fourthPageDiv);
+    
+    $formDiv.append('<input type="hidden" id="retailer" name="retailerID" value="'+retailer+'">');
+    $formDiv.append('<input type="submit" value="Add Product" id="addProdButton">');
+    $productDiv.append($formDiv);
     $productDiv.append('<button id="closeBox" onclick="closeBox()">Close Box</button>');
     $fullPageDiv.append($productDiv);
     $('body').append($fullPageDiv);
-    CKEDITOR.replace('productInfo');
-    $('#addProdButton').click(addProdToDB);
+    $('#productInfo').ckeditor();
+    $('#optionInfo0').ckeditor();
+    $('#uploadimage').submit(addProdToDB);
     $('#category').change(getSubCatsFromCat);
+    $('.secondPage').hide();
+    $('.thirdPage').hide();
+    $('.fourthPage').hide();
+    
+    $('#fileToUpload0').change(getImagePreview);
     
     //need to get array of categories because each Subcategory must have a category that it falls under
     

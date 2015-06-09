@@ -104,11 +104,14 @@ function getProducts(event){
 
 function createListItem(indentType, editType, itemName, itemID, retailer) {
     $newLI = $('<li></li>');
-    $newButton = $('<button class="'+indentType+'" onclick="viewproduct('+itemID+',\''+editType+'\')"></button>');
+    $newButton = $('<button class="'+indentType+'" onclick="viewproduct('+itemID+',\''+editType+'\')"></button><br>');
     $newButton.append('<p>'+itemName+'</p>');
-    $newButton.append('<a href="#" id="deleteProduct" onclick="deleteProduct('+itemID+',\''+editType+'\')"><img src="img/delete.png"></a>')
-    $newButton.append('<a href="#" id="editProduct" onclick = "editProduct('+itemID+',\''+editType+'\',\''+retailer+'\')"><img src="img/edit.png"></a>');
     $newLI.append($newButton);
+        $editDeleteDiv = $('<div class="'+indentType+' editDelete"></div>');
+    $editDeleteDiv.append('<a href="#" id="deleteProduct" onclick="deleteProduct('+itemID+',\''+editType+'\')"><img src="img/delete.png"></a>')
+    $editDeleteDiv.append('<a href="#" id="editProduct" onclick = "editProduct('+itemID+',\''+editType+'\',\''+retailer+'\')"><img src="img/edit.png"></a><br>');
+    $newLI.append($editDeleteDiv);
+    
     return $newLI;
 }
 

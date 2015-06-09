@@ -6,6 +6,20 @@ function closeBox(event){
     $('.fullPage').remove();
 }
 
+function showHiddenBox(event){
+    if (event) {
+        event.preventDefault();
+    }
+    $('.hiddenInfoDiv').show();
+}
+
+function closeHiddenBox(event){
+    if (event) {
+        event.preventDefault();
+    }
+    $('.hiddenInfoDiv').hide();
+}
+
 function showPageOptions(){
     $('#yourpage').show();
 }
